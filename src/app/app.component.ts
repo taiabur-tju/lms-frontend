@@ -8,11 +8,12 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Leave Management System';
 
   serverData: JSON;
   employeeData: JSON;
   employee:JSON;
+  userData:JSON;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -37,6 +38,12 @@ export class AppComponent {
     this.httpClient.get('http://127.0.0.1:5002/employees/'+empid).subscribe(data => {
       this.employee = data as JSON;
       console.log(this.employee);
+    })
+  }
+  allUsers() {
+    this.httpClient.get('http://127.0.0.1:5002/db').subscribe(data => {
+      this.userData = data as JSON;
+      console.log(this.userData);
     })
   }
 }
