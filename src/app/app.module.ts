@@ -18,6 +18,7 @@ import { UserComponent } from './user/user.component';
 import { LeaveRequestComponent } from './user/leave-request/leave-request.component';
 import { LeaveListComponent } from './user/leave-list/leave-list.component';
 // import {MatTableModule} from '@angular/material/table';
+import{ MustMatchDirective } from './_helper/must-match.directive'; 
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LeaveListComponent } from './user/leave-list/leave-list.component';
     AdminComponent,
     UserComponent,
     LeaveRequestComponent,
-    LeaveListComponent
+    LeaveListComponent,
+    MustMatchDirective
   ],
   imports: [
     BrowserModule,

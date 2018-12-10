@@ -1,34 +1,52 @@
-<div class="input-container">
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <mat-form-field>
-        <input matInput type="text" name="firstName" placeholder="Full Name" [(ngModel)]="model.full_name" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
-      </mat-form-field>
-      <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
-          <div class="text text-danger" *ngIf="firstName.errors.required">Name is required</div>
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 offset-md-2">
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+                  <div class="form-group">
+                      <label for="firstName">First Name</label>
+                      <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required />
+                      <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                          <div class="text text-danger" *ngIf="firstName.errors.required">First Name is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && lastName.invalid }" required />
+                      <div *ngIf="f.submitted && lastName.invalid" class="invalid-feedback">
+                          <div class="text text-danger" *ngIf="lastName.errors.required">Last Name is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email />
+                      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+                          <div class="text text-danger" *ngIf="email.errors.required">Email is required</div>
+                          <div class="text text-danger" *ngIf="email.errors.email">Email must be a valid email address</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+                      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                          <div class="text text-danger" *ngIf="password.errors.required">Password is required</div>
+                          <div class="text text-danger" *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="model.confirmPassword" #confirmPassword="ngModel" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required />
+                      <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+                          <div class="text text-danger" *ngIf="confirmPassword.errors.required">Confirm Password is required</div>
+                          <div class="text text-danger" *ngIf="confirmPassword.errors.mustMatch">Passwords must match</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <button class="btn btn-primary">Register</button>
+                  </div>
+              </form>
+          </div>
       </div>
-      <mat-form-field>
-        <input matInput type="text" name="email" [(ngModel)]="model.email" placeholder="Email Address" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" required email>
-      </mat-form-field>
-      <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
-        <div class="text text-danger" *ngIf="email.errors.required">Email is required</div>
-        <div class="text text-danger" *ngIf="email.errors.email">Email must be a valid email address</div>
-      </div>
-      <mat-form-field>
-        <input matInput type="text" name="phone" [(ngModel)]="model.phone" placeholder="Phone" #phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && phone.invalid }" required>
-      </mat-form-field>
-        <div *ngIf="f.submitted && phone.invalid" class="invalid-feedback">
-          <div class="text text-danger" *ngIf="phone.errors.required">Phone is required</div>
-      </div>
-      <mat-form-field>
-        <input matInput type="password" name="password" placeholder="Password" [(ngModel)]="model.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" >
-      </mat-form-field>
-      <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-          <div class="text text-danger" *ngIf="password.errors.required">Password is required</div>
-          <div class="text text-danger" *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-      </div>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Retype Password" name="retype_spassword">
-      </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">Submit</button>
-  </form>
+  </div>
 </div>
