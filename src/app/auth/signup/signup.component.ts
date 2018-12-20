@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from 'selenium-webdriver/http';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-
-
-
-export class LoginComponent implements OnInit {
-  public form={
-    email: null,
-    password:null
+export class SignupComponent implements OnInit {
+  private error=[];
+  private form={
+    name:null,
+    email:null,
+    phone:null,
+    password:null,
+    retype_password:null,
   };
 
   constructor(
@@ -23,10 +24,9 @@ export class LoginComponent implements OnInit {
     private token: TokenService,
     private router: Router,
     ) { }
-    private error=null;
 
   onSubmit(){
-    this.auth.login(this.form).subscribe(
+    this.auth.signup(this.form).subscribe(
       data=> this.loginHandel(data),
       error=>this.errorHandel(error),
     );    
@@ -34,14 +34,12 @@ export class LoginComponent implements OnInit {
 
   loginHandel(data){
     this.token.handel(data.access_token);
-    this.auth.changeAuthStatus(true);
     this.router.navigateByUrl('/dashboard');
   }
 
   errorHandel(error){
-    this.error=error.error.error;
+    this.error=error.error.errors;
   }
-
   ngOnInit() {
   }
 

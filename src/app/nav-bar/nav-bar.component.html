@@ -1,0 +1,11 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="col-md-6">
+    <a routerLink="" class="navbar-brand">Leave Management System</a>
+  </div>
+  <div class="col-md-5">
+    <a routerLink="signup" class="float-right btn btn-outline-primary my-2 my-sm-0" *ngIf='!loggedIn'>Signup</a>
+    <a routerLink="login" class="float-right navbar-brand" *ngIf='!loggedIn'>Login</a>
+    <a routerLink="#" (click)="logout($event)" class="float-right navbar-brand" *ngIf='loggedIn'>Log Out</a>
+  </div>
+
+</nav>

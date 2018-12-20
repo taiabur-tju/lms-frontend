@@ -1,50 +1,41 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './auth/login/login.component';
-import { CreateUserComponent } from './auth/create-user/create-user.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ReactiveFormsModule,FormsModule} from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule,MatButtonModule} from '@angular/material';
-import { MessageComponent } from './message/message.component';
-import { AdminComponent } from './admin/admin.component';
-import { UserComponent } from './user/user.component';
-import { LeaveRequestComponent } from './user/leave-request/leave-request.component';
-import { LeaveListComponent } from './user/leave-list/leave-list.component';
-// import {MatTableModule} from '@angular/material/table';
-import{ MustMatchDirective } from './_helper/must-match.directive'; 
+import { SignupComponent } from './auth/signup/signup.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BeforeLoginService } from './service/before-login.service';
+import { AfterLoginService } from './service/after-login.service';
+import { RequestPasswordResetComponent } from './components/request-password-reset/request-password-reset.component';
+import { ResponsePasswordResetComponent } from './components/response-password-reset/response-password-reset.component';
+import { RequestPasswordMessageComponent } from './components/request-password-message/request-password-message.component';
+import { ResponsePasswordMessageComponent } from './components/response-password-message/response-password-message.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
+    NavBarComponent,
     LoginComponent,
-    CreateUserComponent,
-    MessageComponent,
-    AdminComponent,
-    UserComponent,
-    LeaveRequestComponent,
-    LeaveListComponent,
-    MustMatchDirective
+    SignupComponent,
+    DashboardComponent,
+    RequestPasswordResetComponent,
+    ResponsePasswordResetComponent,
+    RequestPasswordMessageComponent,
+    ResponsePasswordMessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [BeforeLoginService,AfterLoginService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
